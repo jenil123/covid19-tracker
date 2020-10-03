@@ -1,0 +1,88 @@
+<!-- CODE EXPLAINED TUTORIALS -->
+<!-- youtube.com/CodeExplained -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./resources/css/style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </head>
+  <body class="body">
+    <!-- <header>
+      <div class="logo">
+        <img src="./resources/img/logo.png" alt="" />
+        <p>COVID-19<br />STATS</p>
+      </div>
+    </header> -->
+
+    <main>
+
+      <div class="loader" id="loader"></div>
+      
+      <div class="stats" id="stats">
+        <div class="latest-report" id="latest-report">
+          <div class="state" id="state">
+            <div class="name" id="name">Loading...</div>
+            <div class="change-state" id="change-state">change</div>
+            <div class="search-state hide" id="search-state">
+              <div class="search-box" id="search-box">
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Search State..."
+                />
+                <img class="close" id="close" src="./resources/img/close.svg" alt="" />
+              </div>
+              <div class="state-list" id="state-list"></div>
+            </div>
+          </div>
+          <div class="total-cases" id="total-cases">
+            <div class="title" id="title">Total Cases</div>
+            <div class="value" id="value">0</div>
+            <div class="new-value" id="new-value">+0</div>
+          </div>
+          <div class="recovered" id="recovered">
+            <div class="title" id="title">Recovered</div>
+            <div class="value" id="value">0</div>
+            <div class="new-value" id="new-value">+0</div>
+          </div>
+          <div class="deaths" id="deaths">
+            <div class="title" id="title">Deaths</div>
+            <div class="value" id="value">0</div>
+            <div class="new-value" id="new-value">+0</div>
+          </div>
+        </div>
+        <div class="slidecontainer" id="slidecontainer">
+          <input type="range" min="20" max="300" value="160" class="slider" id="myRange">
+          
+        </div>
+        <div class="Chart" id="Chart">
+          <canvas  id="axes_line_chart"></canvas>
+        </div>
+        <!-- <div class="Chart">
+          <canvas class="grid-child" id="pie_chart"></canvas>
+        </div> -->
+        
+        <button id="line-chart" class='btn btn-primary' >click to view line graph</button>
+        <button id="bar-chart" class='btn btn-success'>click to view bar graph</button>
+      </div>
+    </main>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+      integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      language="JavaScript"
+      src="http://www.geoplugin.net/javascript.gp"
+      type="text/javascript"
+    ></script>
+    <script src="./resources/js/state.js"></script>
+    <script src="resources/js/main.js"></script>
+  </body>
+</html>
