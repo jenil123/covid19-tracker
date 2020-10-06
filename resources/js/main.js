@@ -268,7 +268,7 @@ function axesLinearChart(value) {
   {
     my_pie.destroy();
   }
-
+  formatedDates = [...new Set(formatedDates)];
   my_chart = new Chart(ctx, {
     type: "line",
     data: {
@@ -313,6 +313,7 @@ function axesLinearChart(value) {
   }
 }
 function piechart(value) {
+  formatedDates = [...new Set(formatedDates)];
   console.log(formatedDates)
   if (my_chart) {
     my_chart.destroy();
