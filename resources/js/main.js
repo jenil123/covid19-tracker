@@ -267,6 +267,9 @@ fetchData(user_state)
 let inputValue=document.getElementById("myRange")
 function updateUI(dates) {
     updateStats(dates);
+      var value=inputValue.value;
+      console.log(value)
+      axesLinearChart(value);
     button.addEventListener("click",(e)=>{
      // e.preventDefault()
       var value=inputValue.value;
@@ -450,6 +453,7 @@ const monthsNames = [
   "Apr",
   "May",
   "Jun",
+  "July",
   "Aug",
   "Sep",
   "Oct",
@@ -460,5 +464,5 @@ const monthsNames = [
 function formatDate(dateString) {
   let date = new Date(dateString);
 
-  return `${date.getDate()} ${monthsNames[date.getMonth() - 1]}`;
+  return `${date.getDate()} ${monthsNames[date.getMonth()]}`;
 }
