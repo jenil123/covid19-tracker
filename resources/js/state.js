@@ -30,7 +30,7 @@ let state_list = [
     { name: 'Punjab', code: 'PB' },
     { name: 'Rajasthan', code: 'RJ' },
     { name: 'Sikkim', code: 'NO' },
-    { name: 'Tamil Nadu	', code: 'TN' },
+    { name: 'Tamil Nadu', code: 'TN' },
     { name: 'Telangana', code: 'TG' },
     { name: 'Tripura', code: 'TR' },
     { name: 'Uttar Pradesh', code: 'UP' },
