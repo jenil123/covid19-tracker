@@ -22,6 +22,9 @@ let app_data = [],
   deaths_list = [],
   deaths = [],
   formatedDates = [];
+  new_daily=[],
+  new_recovered=[],
+  new_death=[];
 // const fetch = require("node-fetch");
 
   
@@ -141,24 +144,7 @@ function fetchData(state) {
                     console.log(total)
                     if(isNaN(total) )
                     {
-                    //   let avg= cases_list.reduce((acc, c) => acc + c, 0);
-                    //    avg=avg / cases_list.length;
-                       
-                    //   cases_list.push(avg);
-                    //   console.log("avg")
-                    //   console.log(avg)
-                    //   avg= recovered_list.reduce((acc, c) => acc + c, 0);
-                    //    avg=avg / cases_list.length;
-                       
-                    // recovered_list.push(avg);
-                    // avg= deaths_list.reduce((acc, c) => acc + c, 0);
-                    //    avg=avg / cases_list.length;
-                     
-                    // deaths_list.push(avg);
-                    // avg= active_list.reduce((acc, c) => acc + c, 0);
-                    //    avg=avg / cases_list.length;
-                     
-                    // active_list.push(avg);
+                    
                     cases_list.push(cases_list[cases_list.length-1]);
                       recovered_list.push(recovered_list[recovered_list.length-1]);
                       deaths_list.push(deaths_list[deaths_list.length-1]);
@@ -209,24 +195,7 @@ function fetchData(state) {
                       console.log(totalnew)
                       if(isNaN(totalnew))
                     {
-                    //   let avg= cases_list.reduce((acc, c) => acc + c, 0);
-                    //    avg=avg / cases_list.length;
-                       
-                    //   cases_list.push(avg);
-                    //   console.log("avg")
-                    //   console.log(avg)
-                    //   avg= recovered_list.reduce((acc, c) => acc + c, 0);
-                    //    avg=avg / cases_list.length;
-                       
-                    // recovered_list.push(avg);
-                    // avg= deaths_list.reduce((acc, c) => acc + c, 0);
-                    //    avg=avg / cases_list.length;
-                     
-                    // deaths_list.push(avg);
-                    // avg= active_list.reduce((acc, c) => acc + c, 0);
-                    //    avg=avg / cases_list.length;
-                     
-                    // active_list.push(avg);
+                   
                    
                       cases_list.push(cases_list[cases_list.length-1]);
                       recovered_list.push(recovered_list[recovered_list.length-1]);
@@ -298,8 +267,29 @@ function updateUI(dates) {
   
     const total_deaths = deaths_list[deaths_list.length-1];
     const new_deaths_cases = total_deaths - deaths_list[deaths_list.length - 2];
+    new_daily=[],
+    new_recovered=[],
+    new_death=[];
+    a = [...new Set(cases_list)];
 
-
+    b = [...new Set(recovered_list)];
+    
+    c = [...new Set(deaths_list)];
+    new_daily.push(a[0]);
+    for(var i=1;i<a.length;i++)
+    {
+        new_daily.push(a[i]-a[i-1]);
+    }
+    new_recovered.push(b[0]);
+    for(var i=1;i<b.length;i++)
+    {
+        new_recovered.push(b[i]-b[i-1]);
+    }
+    new_death.push(c[0]);
+    for(var i=1;i<c.length;i++)
+    {
+        new_death.push(c[i]-c[i-1]);
+    }
     console.log(new_confirmed_cases)
     console.log(new_recovered_cases)
     console.log(new_deaths_cases)
@@ -394,13 +384,12 @@ function piechart(value) {
   {
     my_pie.destroy();
   }
-  formatedDates = [...new Set(formatedDates)];
  
-  a = [...new Set(cases_list)];
+  a = new_daily
 
-  b = [...new Set(recovered_list)];
+  b = new_recovered
  
-  c = [...new Set(deaths_list)];
+  c = new_death
   my_pie = new Chart(ctx, {
     type: "bar",
     data: {
