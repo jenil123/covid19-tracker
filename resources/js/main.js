@@ -279,6 +279,10 @@ function updateUI(dates) {
     for(var i=1;i<a.length;i++)
     {
         new_daily.push(a[i]-a[i-1]);
+        if(new_daily[new_daily.length-1]<0)
+        {
+          new_daily[new_daily.length-1]=new_daily[new_daily.length-2];
+        }
     }
     new_recovered.push(b[0]);
     for(var i=1;i<b.length;i++)
