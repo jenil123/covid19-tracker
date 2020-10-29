@@ -1,4 +1,4 @@
-// SELECT ALL ELEMENTS
+
 const state_name_element = document.querySelector(".state .name");
 const total_cases_element = document.querySelector(".total-cases .value");
 const new_cases_element = document.querySelector(".total-cases .new-value");
@@ -135,24 +135,39 @@ function fetchData(state) {
                     var total=0;
                     var r=0,d=0,a=0;
                 data.forEach((entry)=>{
-                  console.log(entry.lastUpdatedAtApify)
-                  dates.push(entry['lastUpdatedAtApify']);
+                  //console.log(entry.lastUpdatedAtApify)
+                  if(formatDate(dates[dates.length-1]).toString()===formatDate(entry['lastUpdatedAtApify']).toString())
+                  {
+                    
+                    dates.pop();
+                    //dates.pop();
+                    cases_list.pop();
+                    recovered_list.pop();
+                    deaths_list.pop();
+                    active_list.pop();
+                    dates.push(entry['lastUpdatedAtApify']);
+                  }
+                  else{
+                    dates.push(entry['lastUpdatedAtApify']);
+                  }
+                  
                     active=parseInt(entry.activeCases);
                     death=parseInt(entry.deaths);
                     rec=parseInt(entry.recovered);
                     total=active+death+rec;
-                    console.log(total)
-                    if(isNaN(total) )
+                    //console.log(total)
+                    if(isNaN(total) ==true)
                     {
                     
-                    cases_list.push(cases_list[cases_list.length-1]);
-                      recovered_list.push(recovered_list[recovered_list.length-1]);
-                      deaths_list.push(deaths_list[deaths_list.length-1]);
-                      active_list.push(active_list[active_list.length-1]);
+                      cases_list.push(2*cases_list[cases_list.length-1]-cases_list[cases_list.length-2]);
+                      recovered_list.push(2*recovered_list[recovered_list.length-1]-recovered_list[recovered_list.length-2]);
+                      deaths_list.push(2*deaths_list[deaths_list.length-1]-deaths_list[deaths_list.length-2]);
+                      active_list.push(2*active_list[active_list.length-1]-active_list[active_list.length-2]);
+                    //dates.pop();
                     }
                     else
                     {
-                      console.log(total);
+                      //console.log(total);
                     //console.log(death);
                     cases_list.push(total);
                     recovered_list.push(rec);
@@ -161,7 +176,8 @@ function fetchData(state) {
                     }
                     //console.log(active);
                     //console.log(rec);
-                    
+                    console.log(cases_list[cases_list.length-1]);
+                  
                 })
                 
                 // var a=0,d=0,r=0;
@@ -176,12 +192,35 @@ function fetchData(state) {
                     var r=0,d=0,a=0;
             data.forEach((datas) => {
               {
-                console.log(datas.hasOwnProperty('regionData'))
+                //console.log(datas.hasOwnProperty('regionData'))
                 if(datas.hasOwnProperty('regionData'))
                 {
                   // console.log(datas);
-                  console.log(datas.lastUpdatedAtApify)
-                    dates.push(datas.lastUpdatedAtApify);
+                  console.log(formatDate(dates[dates.length-1]),formatDate(datas['lastUpdatedAtApify']))
+                  //console.log(dates)
+                  if(formatDate(dates[dates.length-1])==formatDate(datas['lastUpdatedAtApify']))
+                  {
+                    console.log("herer",cases_list.length);
+                    if(datas['regionData'].length!=0)
+                    {
+                      dates.pop();
+                      cases_list.pop();
+                      recovered_list.pop();
+                      deaths_list.pop();
+                      active_list.pop();
+                      console.log(cases_list.length)
+                    }
+                      
+                    
+                  }
+                  else{
+                    
+                  }
+                  //console.log(datas.lastUpdatedAtApify)
+                    //dates.push(datas.lastUpdatedAtApify);
+                    if(datas['regionData'].length!=0)
+                    {
+                      dates.push(datas['lastUpdatedAtApify']);
                   datas['regionData'].forEach((entry)=>{
                     
                     if(entry.region===user_state)
@@ -192,26 +231,34 @@ function fetchData(state) {
                       d=parseInt(entry.deceased);
                       r=parseInt(entry.recovered);
                       totalnew=a+d+r;
-                      console.log(totalnew)
-                      if(isNaN(totalnew))
-                    {
+                      //console.log(totalnew)
+                    //   if(isNaN(totalnew))
+                    // {
                    
                    
-                      cases_list.push(cases_list[cases_list.length-1]);
-                      recovered_list.push(recovered_list[recovered_list.length-1]);
-                      deaths_list.push(deaths_list[deaths_list.length-1]);
-                      active_list.push(active_list[active_list.length-1]);
-                    }
-                      else{
-                        console.log(totalnew)
+                    //   cases_list.push(2*cases_list[cases_list.length-1]-cases_list[cases_list.length-2]);
+                    //   recovered_list.push(2*recovered_list[recovered_list.length-1]-recovered_list[recovered_list.length-2]);
+                    //   deaths_list.push(2*deaths_list[deaths_list.length-1]-deaths_list[deaths_list.length-2]);
+                    //   active_list.push(2*active_list[active_list.length-1]-active_list[active_list.length-2]);
+                    //   // recovered_list.push(recovered_list[recovered_list.length-1]);
+                    //   // deaths_list.push(deaths_list[deaths_list.length-1]);
+                    //   // active_list.push(active_list[active_list.length-1]);
+                    //  // dates.pop();
+                    // }
+                    
+                        //console.log(totalnew)
                       cases_list.push(totalnew);
                       recovered_list.push(r);
                       deaths_list.push(d);
                       active_list.push(a);
-                      }
                       
+                       console.log(recovered_list[recovered_list.length-1],formatDate(dates[dates.length-1]));
                      }
+                  
+
                    })
+                  }
+                  
                   
                 }
               }
@@ -237,12 +284,12 @@ let inputValue=document.getElementById("myRange")
 function updateUI(dates) {
     updateStats(dates);
       var value=inputValue.value;
-      console.log(value)
+      //console.log(value)
       axesLinearChart(value);
     button.addEventListener("click",(e)=>{
      // e.preventDefault()
       var value=inputValue.value;
-      console.log(value)
+      //console.log(value)
       axesLinearChart(value);
       return false;
     })
@@ -270,33 +317,32 @@ function updateUI(dates) {
     new_daily=[],
     new_recovered=[],
     new_death=[];
-    a = [...new Set(cases_list)];
+    a = cases_list;
 
-    b = [...new Set(recovered_list)];
+    b = recovered_list;
     
-    c = [...new Set(deaths_list)];
+    c =deaths_list;
     new_daily.push(a[0]);
     for(var i=1;i<a.length;i++)
     {
-        new_daily.push(a[i]-a[i-1]);
-        if(new_daily[new_daily.length-1]<0)
-        {
-          new_daily[new_daily.length-1]=new_daily[new_daily.length-2];
-        }
+        new_daily.push(Math.abs(a[i]-a[i-1]));
+        
     }
     new_recovered.push(b[0]);
     for(var i=1;i<b.length;i++)
     {
-        new_recovered.push(b[i]-b[i-1]);
+        new_recovered.push(Math.abs(b[i]-b[i-1]));
+        
     }
     new_death.push(c[0]);
     for(var i=1;i<c.length;i++)
     {
-        new_death.push(c[i]-c[i-1]);
+        new_death.push(Math.abs(c[i]-c[i-1]));
+        
     }
-    console.log(new_confirmed_cases)
-    console.log(new_recovered_cases)
-    console.log(new_deaths_cases)
+    //console.log(new_confirmed_cases)
+    //console.log(new_recovered_cases)
+    //console.log(new_deaths_cases)
     state_name_element.innerHTML = user_state;
     total_cases_element.innerHTML = total_cases;
     new_cases_element.innerHTML = '+' + new_confirmed_cases;
@@ -310,7 +356,7 @@ function updateUI(dates) {
     dates.forEach((date) => {
         formatedDates.push(formatDate(date));
       });
-
+      console.log(formatedDates,recovered_list)
 
   }
 
@@ -318,7 +364,7 @@ function updateUI(dates) {
   // UPDATE CHART
 
 function axesLinearChart(value) {
-  console.log(formatedDates)
+  //console.log(formatedDates)
   if (my_chart) {
     my_chart.destroy();
   }
@@ -326,13 +372,21 @@ function axesLinearChart(value) {
   {
     my_pie.destroy();
   }
-  formatedDates = [...new Set(formatedDates)];
- 
-  a = [...new Set(cases_list)];
-
-  b = [...new Set(recovered_list)];
   
-  c = [...new Set(deaths_list)];
+ 
+  // a = [...new Set(cases_list)];
+
+  // b = [...new Set(recovered_list)];
+  
+  // c = [...new Set(deaths_list)];
+  a = cases_list;
+
+  b = (recovered_list);
+  
+  c = (deaths_list);
+  fdate=formatedDates;
+  console.log(a.length,fdate.length)
+  
   // d=[]
   // d = [...new Set(deaths_list)];
   my_chart = new Chart(ctx, {
@@ -364,7 +418,7 @@ function axesLinearChart(value) {
           borderWidth: 1,
         },
       ],
-      labels: formatedDates.slice(formatedDates.length-value,formatedDates.length),
+      labels: fdate.slice(fdate.length-value,fdate.length),
     },
     options: {
       responsive: true,
@@ -379,8 +433,9 @@ function axesLinearChart(value) {
   }
 }
 function piechart(value) {
-  formatedDates = [...new Set(formatedDates)];
-  console.log(formatedDates)
+  //formatedDates = [...new Set(formatedDates)];
+  //console.log(formatedDates)
+  //formatedDates = formatedDates;
   if (my_chart) {
     my_chart.destroy();
   }
@@ -394,6 +449,7 @@ function piechart(value) {
   b = new_recovered
  
   c = new_death
+  fdate=formatedDates;
   my_pie = new Chart(ctx, {
     type: "bar",
     data: {
@@ -423,7 +479,7 @@ function piechart(value) {
           borderWidth: 1,
         },
       ],
-      labels: formatedDates.slice(formatedDates.length-value,formatedDates.length),
+      labels: fdate.slice(fdate.length-value,fdate.length),
     },
     options: {
       responsive: true,
