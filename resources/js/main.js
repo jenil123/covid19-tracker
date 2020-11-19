@@ -29,13 +29,13 @@ let app_data = [],
 
   
 // GET USERS COUNTRY CODE
-let country_code = geoplugin_countryCode();
-let user_state;
-state_list.forEach((state) => {
-  if (state.code == country_code) {
-    user_state = state.name;
-  }
-});
+//let country_code = geoplugin_countryCode();
+let user_state="India";
+// state_list.forEach((state) => {
+//   if (state.code == country_code) {
+//     user_state = state.name;
+//   }
+// });
 console.log(user_state)
 /* ---------------------------------------------- */
 /*                     FETCH API                  */
