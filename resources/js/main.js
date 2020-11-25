@@ -422,7 +422,7 @@ function axesLinearChart(value) {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       responsiveAnimationDuration:1,
     },
   });
@@ -483,7 +483,7 @@ function piechart(value) {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       responsiveAnimationDuration:3,
     },
   });
