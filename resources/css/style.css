@@ -89,7 +89,7 @@ nav ul li a {
 /*                      MAIN                      */
 /* ---------------------------------------------- */
 main{
-    max-width: 65%;
+    max-width: 100%;
     margin: 0;
     max-height: fit-content;
 }
