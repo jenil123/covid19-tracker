@@ -1,14 +1,7 @@
 
 
 
-----------------------------------------------
-/*            CODE EXPLAINED TUTORIALS            */
-/*         www.youtube.com/CodeExplained          */
-/* ---------------------------------------------- */
 
-/* ---------------------------------------------- */
-/*                  LOAD FONTS                    */
-/* ---------------------------------------------- */
 @font-face{
     font-family: 'Gilroy';
     src: url(./Gilroy-Regular.woff) format(woff);
@@ -103,7 +96,7 @@ nav ul li a {
 /* ---------------------------------------------- */
 main{
 
-    max-width: 75%;
+    max-width: 85%;
     margin: 2px;
     
     max-height: fit-content;
