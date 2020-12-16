@@ -25,22 +25,11 @@ let app_data = [],
   new_daily=[],
   new_recovered=[],
   new_death=[];
-// const fetch = require("node-fetch");
 
-  
-// GET USERS COUNTRY CODE
-//let country_code = geoplugin_countryCode();
 let user_state="India";
-// state_list.forEach((state) => {
-//   if (state.code == country_code) {
-//     user_state = state.name;
-//   }
-// });
+
 console.log(user_state)
-/* ---------------------------------------------- */
-/*                     FETCH API                  */
-/* ---------------------------------------------- */
-// const express=require('express')
+
 
 let my_chart;
 let my_pie;
@@ -71,8 +60,7 @@ function fetchData(state) {
       my_chart.destroy();
     }
     const api_fetch = async () => {
-      //document.getElementById('stats').style.visibility = 'hidden'; 
-      // document.getElementById('latest-report').style.visibility = 'hidden'; 
+
       document.getElementById('state').style.visibility = 'hidden'; 
       document.getElementById('name').style.visibility = 'hidden'; 
       document.getElementById('change-state').style.visibility = 'hidden'; 
@@ -231,22 +219,7 @@ function fetchData(state) {
                       d=parseInt(entry.deceased);
                       r=parseInt(entry.recovered);
                       totalnew=a+d+r;
-                      //console.log(totalnew)
-                    //   if(isNaN(totalnew))
-                    // {
-                   
-                   
-                    //   cases_list.push(2*cases_list[cases_list.length-1]-cases_list[cases_list.length-2]);
-                    //   recovered_list.push(2*recovered_list[recovered_list.length-1]-recovered_list[recovered_list.length-2]);
-                    //   deaths_list.push(2*deaths_list[deaths_list.length-1]-deaths_list[deaths_list.length-2]);
-                    //   active_list.push(2*active_list[active_list.length-1]-active_list[active_list.length-2]);
-                    //   // recovered_list.push(recovered_list[recovered_list.length-1]);
-                    //   // deaths_list.push(deaths_list[deaths_list.length-1]);
-                    //   // active_list.push(active_list[active_list.length-1]);
-                    //  // dates.pop();
-                    // }
-                    
-                        //console.log(totalnew)
+ 
                       cases_list.push(totalnew);
                       recovered_list.push(r);
                       deaths_list.push(d);
